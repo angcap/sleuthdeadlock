@@ -1,11 +1,13 @@
-# Running project
+# Spring JPA - Sleuth deadlock
+
+## Run the project
 
 ```
 mvn -P localdev clean spring-boot:run
 ```
 
-
-Application blocks, a thread dump shows:
+## Issue
+With sleuth dependency enabled, the application blocks at startup, a thread dump shows:
 
 ```
 "scheduling-1" #24 prio=5 os_prio=0 cpu=1188,63ms elapsed=14,39s tid=0x00007fb12d5e4800 nid=0x7ffd waiting for monitor entry  [0x00007fb11e5f8000]
