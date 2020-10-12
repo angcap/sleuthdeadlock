@@ -1,0 +1,28 @@
+logging:
+    level:
+        org: info
+        org.apache.kafka: error                              
+        online: trace
+        
+server:
+    port: ${port:8089}
+    compression:
+       enabled: true
+       min-response-size: 500KB
+
+spring:
+    application.name: ship-itinerary
+    mvc.async.request-timeout: 600000
+    servlet.multipart.max-file-size: 5MB
+    servlet.multipart.max-request-size: 5MB
+    jpa:
+        open-in-view: false
+        hibernate:           
+           naming:
+              physical-strategy:
+                 org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    jackson:
+        serialization:
+            write_dates_as_timestamps: false
+
+management.health.probes.enabled: true

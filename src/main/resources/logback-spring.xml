@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<springProfile name="openshift">
+
+		<springProperty scope="context" name="serviceId"
+			source="spring.application.name" />
+
+		<include
+			resource="org/springframework/boot/logging/logback/defaults.xml" />
+		<include
+			resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+		<appender name="JSON_CONSOLE"
+			class="ch.qos.logback.core.ConsoleAppender">
+			<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+				<includeContext>false</includeContext>
+				<customFields>{"application":"${serviceId}"}</customFields>
+			</encoder>
+		</appender>
+
+		<root level="info">
+			<appender-ref ref="JSON_CONSOLE" />
+		</root>
+
+	</springProfile>
+	<springProfile name="!openshift">
+		<include
+			resource="org/springframework/boot/logging/logback/defaults.xml" />
+		<include
+			resource="org/springframework/boot/logging/logback/console-appender.xml" />
+		<root level="info">
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</springProfile>
+</configuration>
